@@ -2,16 +2,29 @@ plugins {
     id 'java'
 }
 
-group 'org.example'
+group 'HomeTask26'
 version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
 }
 
+//war {
+//    enabled=true
+//}
+
+//war {
+//    from 'src/rootContent' // adds a file-set to the root of the archive
+//    webInf { from 'src/additionalWebInf' } // adds a file-set to the WEB-INF dir.
+//    classpath fileTree('additionalLibs') // adds a file-set to the WEB-INF/lib dir.
+//    classpath configurations.moreLibs // adds a configuration to the WEB-INF/lib dir.
+//    webXml = file('src/someWeb.xml') // copies a file to WEB-INF/web.xml
+//}
+
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+//    compile 'org.apache.maven.plugins:maven-surefire-plugin:2.21.0'
 }
 
 test {
