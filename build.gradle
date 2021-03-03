@@ -1,5 +1,12 @@
+buildscript {
+    dependencies {
+        classpath 'com.bmuschko:gradle-tomcat-plugin:2.4.1'
+    }
+}
+
 plugins {
     id 'java'
+    id 'war'
 }
 
 group 'HomeTask26'
@@ -9,23 +16,28 @@ repositories {
     mavenCentral()
 }
 
-//war {
-//    enabled=true
-//}
-
-//war {
-//    from 'src/rootContent' // adds a file-set to the root of the archive
-//    webInf { from 'src/additionalWebInf' } // adds a file-set to the WEB-INF dir.
-//    classpath fileTree('additionalLibs') // adds a file-set to the WEB-INF/lib dir.
-//    classpath configurations.moreLibs // adds a configuration to the WEB-INF/lib dir.
-//    webXml = file('src/someWeb.xml') // copies a file to WEB-INF/web.xml
-//}
+//apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'com.bmuschko.tomcat'
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
-//    compile 'org.apache.maven.plugins:maven-surefire-plugin:2.21.0'
+    compile 'org.apache.maven.plugins:maven-surefire-plugin:2.21.0'
+    // https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api
+    compileOnly group: 'javax.servlet', name: 'javax.servlet-api', version: '3.0.1'
+
 }
+
+
+tomcat {
+    httpPort = 8080
+    enableSSL = true
+    contextPath = '/library-spring'
+}
+
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
 
 test {
     useJUnitPlatform()
